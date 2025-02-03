@@ -169,4 +169,6 @@ ZxX3l7WTn8OeRnZF
 myvenv/
 # Artifacts folder
 artifacts/
+# Electricity dataloader
+Electricity_project/Data_Loader.ipynb
 
