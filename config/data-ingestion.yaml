@@ -4,7 +4,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  database_name: energy_consumption
-  collection_name: electricity_bills
+  database_name: Electricity
+  collection_name: Electricity_bill
   batch_size: 10000
   get_user_name: John Doe

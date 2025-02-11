@@ -1,6 +1,6 @@
 
 import sys
-sys.path.append('/home/western/DS_Projects/electricity-bills')
+sys.path.append('C:/Users/ADMIN/OneDrive/Desktop/hadadata/Electricity_project/Electricty_project')
 
 from dataclasses import dataclass
 from pathlib import Path
