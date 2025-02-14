@@ -3,32 +3,32 @@ columns:
     type: 'integer'
     constraints:
       - type: 'range'
-        min: 5.0
-        max: 23.0
+        min: 0.0
+        max: 30.0
           
 
   - name: 'Refrigerator'
     type: 'integer'
     constraints:
       - type: 'range'
-        min: 18.0
-        max: 23.0
+        min: 10.0
+        max: 30.0
           
 
   - name: 'AirConditioner'
-    type: 'integer'
+    type: 'float64'
     constraints:
       - type: 'range'
         min: 0.0
-        max: 3.0
+        max: 7.0
            
 
   - name: 'Television'
-    type: 'integer'
+    type: 'float64'
     constraints:
       - type: 'range'
-        min: 3.0
-        max: 22.0
+        min: 0.0
+        max: 30.0
       
            
   - name: 'Month'
@@ -43,49 +43,35 @@ columns:
     type: 'integer'
     constraints:
       - type: 'range'
-        min: 126
-        max: 843
+        min: 100
+        max: 1000
           
   - name: 'TariffRate'
     type: 'integer'
     constraints:
       - type: 'range'
-        min: 7.40
-        max: 9.30             
+        min: 5.40
+        max: 10.30             
                        
     name: 'ElectricityBill'
     type: 'integer'
     constraints:
       - type: 'range'
-        min: 1033.2
-        max: 7793.4
+        min: 800.2
+        max: 10093.4
 
     name: 'TotalApplianceHours'
-    type: 'integer'
+    type: 'float64'
     constraints:
       - type: 'range'
-        min: 27.0
-        max: 72.0
-
-    name: 'UsageCategory_Low	'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0
-
-    name: 'UsageCategory_Medium'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0       
+        min: 20.0
+        max: 90.0
 
 
   - name: 'City'
     type: 'string'
     constraints:
-      - type: 'pattern'
+      - type: 'enum'
         values:
           - 'Hyderabad'                                               
           - 'Vadodara'                 
@@ -146,44 +132,12 @@ columns:
           - 'TransRail Lighting'
           
 
-  - name: 'Company_Toshiba Transmission & Distribution Systems (India) Pvt. Ltd.'
-    type: 'integer'
+  - name: 'season'
+    type: 'string'
     constraints:
       - type: 'enum'
-        min: 0.0
-        max: 1.0
-
-  - name: 'Company_TransRail Lighting'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0
-
-  - name: 'Company_Unitech Power Transmission Ltd'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0
-          
- -  name: 'City_Chennai'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0 
-
-    name: 'season_Summer'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0 
-
-    name: 'season_Winter'
-    type: 'integer'
-    constraints:
-      - type: 'range'
-        min: 0.0
-        max: 1.0 
+        values:
+        - 'Winter'
+        - 'Summer'
+        - 'Monsoon'
+         

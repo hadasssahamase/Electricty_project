@@ -1,3 +1,6 @@
+import sys
+sys.path.append('C:/Users/ADMIN/OneDrive/Desktop/hadadata/Electricity_project/Electricty_project')
+
 from abc import ABC, abstractmethod
 from typing import Tuple, Optional, Dict, List, Any
 from collections import defaultdict
