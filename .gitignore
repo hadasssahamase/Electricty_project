@@ -172,3 +172,5 @@ artifacts/
 # Electricity dataloader
 Electricity_project/Data_Loader.ipynb
 
+notebook/data_loader.ipynb
+
