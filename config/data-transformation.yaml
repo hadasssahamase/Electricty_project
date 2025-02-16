@@ -21,3 +21,4 @@ data_transformation:
     - 'City'
     - 'season'
     - 'Company'
+    - 'UsageCategory'
