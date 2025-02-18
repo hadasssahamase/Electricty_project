@@ -1,0 +1,31 @@
+{
+  "os":  "Windows-11-10.0.26100-SP0",
+  "python":  "CPython 3.12.7",
+  "startedAt":  "2025-02-17T20:21:28.792851Z",
+  "program":  "C:\\Users\\ADMIN\\OneDrive\\Desktop\\hadadata\\Electricity_project\\Electricty_project\\experiment\\trial_05_model_evaluation.py",
+  "codePath":  "experiment\\trial_05_model_evaluation.py",
+  "git":  {
+    "remote":  "https://github.com/hadasssahamase/Electricty_project.git",
+    "commit":  "22fa2bd526bc0018fe4f568cdd839aff2ed4cf78"
+  },
+  "email":  "hadassahpalmer77@gmail.com",
+  "root":  "C:\\Users\\ADMIN\\OneDrive\\Desktop\\hadadata\\Electricity_project\\Electricty_project",
+  "host":  "DESKTOP-501MCRR",
+  "executable":  "C:\\Users\\ADMIN\\anaconda3\\python.exe",
+  "codePathLocal":  "experiment\\trial_05_model_evaluation.py",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "208626774016",
+      "used":  "133074821120"
+    }
+  },
+  "memory":  {
+    "total":  "16976740352"
+  },
+  "cpu":  {
+    "count":  4,
+    "countLogical":  8
+  }
+}

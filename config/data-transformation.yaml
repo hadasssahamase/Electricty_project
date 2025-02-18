@@ -13,7 +13,6 @@ data_transformation:
     - 'Month'
     - 'MonthlyHours' 
     - 'TariffRate'
-    - 'ElectricityBill'
     - 'TotalApplianceHours'
   
 
@@ -22,3 +21,8 @@ data_transformation:
     - 'season'
     - 'Company'
     - 'UsageCategory'
+
+    # Target column
+  target_col: 'ElectricityBill'
+    
+     

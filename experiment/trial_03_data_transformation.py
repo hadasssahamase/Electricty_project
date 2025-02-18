@@ -1,3 +1,7 @@
+import sys
+sys.path.append('C:/Users/ADMIN/OneDrive/Desktop/hadadata/Electricity_project/Electricty_project')
+
+
 import pandas as pd 
 import numpy as np
 import joblib 
@@ -114,7 +118,7 @@ class DataTransformation:
             # Save the target variables 
             y_train.to_frame().to_parquet(self.config.root_dir/ 'y_train.parquet', index=False)
             y_val.to_frame().to_parquet(self.config.root_dir/ 'y_val.parquet', index=False)
-            y_test.to_frame().to_parquet(self.config.root_dir/ 'y_test.parquet', Index=False)
+            y_test.to_frame().to_parquet(self.config.root_dir/ 'y_test.parquet', index=False)
 
             return X_train, X_val, X_test, y_train, y_val, y_test
 
@@ -126,7 +130,7 @@ class DataTransformation:
                                      X_train: pd.DataFrame, X_val: pd.DataFrame,
                                      X_test: pd.DataFrame, y_train: pd.Series,
                                      y_val: pd.Series, y_test: pd.Series
-                                     ) -> Tuple[ColumnTransformer, pd.DataFrames, pd.Series]:
+                                     ) -> Tuple[ColumnTransformer, pd.DataFrame, pd.Series]:
 
         try:
             # Get the transformer object 
@@ -141,9 +145,9 @@ class DataTransformation:
             X_test_transformed = preprocessor_obj.transform(X_test)
 
             # Save the transformed data 
-            X_train_transformed_path = Path(self.config.root_dir)/  X_train_transformed.joblib
-            X_val_transformed_path = Path(self.config.root_dir)/  X_val_transformed.joblib
-            X_test_transformed_path = Path(self.config.root_dir)/  X_test_transformed.joblib
+            X_train_transformed_path = self.config.root_dir/  'X_train_transformed.joblib'
+            X_val_transformed_path = self.config.root_dir/  'X_val_transformed.joblib'
+            X_test_transformed_path = self.config.root_dir/  'X_test_transformed.joblib'
 
             joblib.dump(X_train_transformed, X_train_transformed_path)
             joblib.dump(X_val_transformed, X_val_transformed_path)  
