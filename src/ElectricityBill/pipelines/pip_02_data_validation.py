@@ -36,14 +36,14 @@ class DataValidationPipeline:
             logger.info("Starting data validation process") 
             validation_status = data_validation.validate_data(data)
 
-        if validation_status:
-            logger.info("Data Validation Completed Successfully!")
-        else:
-            logger.warning("Data Validation Failed. Check the status file for more details.")
+            if validation_status:
+                logger.info("Data Validation Completed Successfully!")
+            else:
+                logger.warning("Data Validation Failed. Check the status file for more details.")
 
         except Exception as e:
-        logger.error(f"Data validation process failed: {e}")
-        raise CustomException(e, sys)
+            logger.error(f"Data validation process failed: {e}")
+            raise CustomException(e, sys)
     
     
 if __name__ == "__main__":
