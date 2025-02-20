@@ -20,17 +20,33 @@ from src.ElectricityBill.utils.commons import read_yaml, create_directories
 
 
 PIPELINE_NAME = "MODEL TRAINER PIPELINE"
-if __name__ == "__main__":
-    try:
-        config_manager = ConfigurationManager()
-        model_training_config = config_manager.get_model_training_config()
-        model_trainer = ModelTrainer(config=model_training_config)
+class DataModelTrainerPipeline:
+    def __init__(self):
+        pass
+
+    def run(self):
+        try:
+            config_manager = ConfigurationManager()
+            model_training_config = config_manager.get_model_training_config()
+            model_trainer = ModelTrainer(config=model_training_config)
 
         # Train the model
-        model = model_trainer.train() #
-        logger.info("Model Training Completed Successfully")
+            model = model_trainer.train() #
+            logger.info("Model Training Completed Successfully")
 
-    except Exception as e:
-        logger.error(f"Error in model training: {str(e)}")
+        except Exception as e:
+            logger.error(f"Error in model training: {str(e)}")
         wandb.finish()
         sys.exit(1)
+        
+        
+if __name__ == "__main__":
+    try:
+        logger.info (f"------------> starting {PIPELINE_NAME} pipeline ------------->")
+        data_modeltrainer_pipeline = DataModelTrainerPipeline()
+        data_modeltrainer_pipeline.run()
+        logger.info(f"------------> {PIPELINE_NAME} pipeline completed successfully ------------->")
+
+    except Exception as e:
+        logger.error(f"Error in {PIPELINE_NAME} pipeline: {e}")
+        raise CustomException(e, sys)              

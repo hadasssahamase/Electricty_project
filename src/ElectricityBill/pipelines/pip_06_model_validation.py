@@ -20,25 +20,41 @@ from src.ElectricityBill.utils.commons import read_yaml, create_directories
 
 PIPELINE_NAME = "MODEL VALIDATION PIPELINE"
 
-if __name__ == "__main__":
-    try:
-        config_manager = ConfigurationManager()
-        model_validation_config = config_manager.get_model_validation_config()
-        model_validator = ModelValidator(config=model_validation_config)
+class DataModelValidationPipeline:
+    def __init__(self):
+        pass
 
-        # Determine next run number
-        root_dir = model_validation_config.root_dir
-        run_number = get_run_count_from_file(root_dir) + 1
+    def run(self):
+        try:
+            config_manager = ConfigurationManager()
+            model_validation_config = config_manager.get_model_validation_config()
+            model_validator = ModelValidator(config=model_validation_config)
 
-        # Validate the model
-        model_validator.validate(run_number)
+            # Determine next run number
+            root_dir = model_validation_config.root_dir
+            run_number = get_run_count_from_file(root_dir) + 1
 
-        # Write the updated run number back to the file
-        write_run_count_to_file(root_dir, run_number)
+            # Validate the model
+            model_validator.validate(run_number)
+
+            # Write the updated run number back to the file
+            write_run_count_to_file(root_dir, run_number)
 
         logger.info("Model Validation Completed Successfully")
 
-    except Exception as e:
+        except Exception as e:
         logger.error(f"Error in model validation: {str(e)}")
         wandb.finish()
         sys.exit(1)
+        
+        
+if __name__ == "__main__":
+    try:
+        logger.info (f"------------> starting {PIPELINE_NAME} pipeline ------------->")
+        data_modelvalidation_pipeline = DataModelValidationPipeline()
+        data_modelvalidation_pipeline.run()
+        logger.info(f"------------> {PIPELINE_NAME} pipeline completed successfully ------------->")
+
+    except Exception as e:
+        logger.error(f"Error in {PIPELINE_NAME} pipeline: {e}")
+        raise CustomException(e, sys)            

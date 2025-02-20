@@ -21,27 +21,43 @@ from src.ElectricityBill.utils.commons import read_yaml, create_directories
 
 PIPELINE_NAME = "MODEL EVALUATION PIPELINE"
 
-if __name__ == '__main__':
-    try:
+class DataModelEvaluationPipeline:
+    def __init__(self):
+        pass
+
+    def run(self):
+        try:
         # Initialize the configuration manager
-        config_manager = ConfigurationManager()
-        model_evaluation_config = config_manager.get_model_evaluation_config()
-        model_evaluator = ModelEvaluator(config = model_evaluation_config)
+            config_manager = ConfigurationManager()
+            model_evaluation_config = config_manager.get_model_evaluation_config()
+            model_evaluator = ModelEvaluator(config = model_evaluation_config)
 
         ## Determine next run number
-        root_dir = model_evaluation_config.root_dir
+            root_dir = model_evaluation_config.root_dir
 
-        run_number = get_run_count(root_dir) + 1
+            run_number = get_run_count(root_dir) + 1
 
         # Validate the model
-        model_evaluator.evaluate(run_number)
+            model_evaluator.evaluate(run_number)
 
         # Write the updated run number back to the file
-        write_run_count(root_dir, run_number)
+            write_run_count(root_dir, run_number)
 
         logger.info("Model Evaluation Completed Successfully")
 
-    except CustomException as ce:
+        except CustomException as ce:
         logger.error(f"Error in model evaluation")
         wandb.finish()
         sys.exit(1)
+        
+        
+if __name__ == "__main__":
+    try:
+        logger.info (f"------------> starting {PIPELINE_NAME} pipeline ------------->")
+        data_modelevaluation_pipeline = DataModelEvaluationPipeline()
+        data_modelevaluation_pipeline.run()
+        logger.info(f"------------> {PIPELINE_NAME} pipeline completed successfully ------------->")
+
+    except Exception as e:
+        logger.error(f"Error in {PIPELINE_NAME} pipeline: {e}")
+        raise CustomException(e, sys)                  

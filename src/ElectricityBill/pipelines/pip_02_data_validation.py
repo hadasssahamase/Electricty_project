@@ -19,26 +19,40 @@ from src.ElectricityBill.constants import DATA_INGESTION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
 
 PIPELINE_NAME = "DATA VALIDATION PIPELINE"
+class DataValidationPipeline:
+    def __init__(self):
+        pass
 
-
-if __name__ == "__main__":
-    try:
-        config_manager = ConfigurationManager()
-        config = config_manager.get_data_validation_config()
-        data_validation = DataValidation(config=config)
+    def run(self):
+        try:
+            config_manager = ConfigurationManager()
+            config = config_manager.get_data_validation_config()
+            data_validation = DataValidation(config=config)
         
-        print(f"Data Directory: {config.get_config().data_dir}") #Check that the data directory is correct
-        data = pd.read_parquet(config.get_config().data_dir)
-        print("Loaded DataFrame Shape:", data.shape)
+            print(f"Data Directory: {config.get_config().data_dir}") #Check that the data directory is correct
+            data = pd.read_parquet(config.get_config().data_dir)
+            print("Loaded DataFrame Shape:", data.shape)
         
-        logger.info("Starting data validation process") 
-        validation_status = data_validation.validate_data(data)
+            logger.info("Starting data validation process") 
+            validation_status = data_validation.validate_data(data)
 
         if validation_status:
             logger.info("Data Validation Completed Successfully!")
         else:
             logger.warning("Data Validation Failed. Check the status file for more details.")
 
-    except Exception as e:
+        except Exception as e:
         logger.error(f"Data validation process failed: {e}")
         raise CustomException(e, sys)
+    
+    
+if __name__ == "__main__":
+    try:
+        logger.info (f"------------> starting {PIPELINE_NAME} pipeline ------------->")
+        data_validation_pipeline = DataValidationPipeline()
+        data_validation_pipeline.run()
+        logger.info(f"------------> {PIPELINE_NAME} pipeline completed successfully ------------->")
+
+    except Exception as e:
+        logger.error(f"Error in {PIPELINE_NAME} pipeline: {e}")
+        raise CustomException(e, sys)    

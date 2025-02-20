@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple,List
 
 # Data Ingestuion config 
 @dataclass
