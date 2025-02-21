@@ -1,6 +1,5 @@
+artifacts_root: artifacts
+
 prediction_pipeline:
-  model_path: artifacts/model_trainer/leads_score.joblib
+  model_path: artifacts/model_trainer/electricity_model.joblib
   data_preprocessor: artifacts/data_transformation/preprocessor.joblib
-  DB_NAME: leads
-  INPUT_COLLECTION : leads_to_predict
-  OUTPUT_COLLECTION: predicted_leads
