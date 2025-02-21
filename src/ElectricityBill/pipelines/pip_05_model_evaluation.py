@@ -17,6 +17,8 @@ from src.ElectricityBill.exception import CustomException
 from src.ElectricityBill.logger import logger
 from src.ElectricityBill.constants import DATA_INGESTION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
+from src.ElectricityBill.config_manager.config_settings import ConfigurationManager
+from src.ElectricityBill.components.c_05_model_evaluation import ModelEvaluation 
 
 
 PIPELINE_NAME = "MODEL EVALUATION PIPELINE"

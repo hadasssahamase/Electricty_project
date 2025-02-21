@@ -15,8 +15,9 @@ from datetime import datetime
 from dotenv import load_dotenv
 from src.ElectricityBill.exception import CustomException
 from src.ElectricityBill.logger import logger
-from src.ElectricityBill.constants import DATA_INGESTION_CONFIG_FILEPATH
+from src.ElectricityBill.config_manager.config_settings import ConfigurationManager
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
+from src.ElectricityBill.components.c_04_model_trainer import ModelTrainer
 
 
 PIPELINE_NAME = "MODEL TRAINER PIPELINE"

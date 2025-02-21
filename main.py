@@ -19,78 +19,63 @@ from src.ElectricityBill.constants import DATA_INGESTION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
 from src.ElectricityBill.config_manager.config_settings import *
 
+from src.ElectricityBill.logger import logger  
+from src.ElectricityBill.pipelines.pip_01_data_ingestion import DataIngestionPipeline
+from src.ElectricityBill.pipelines.pip_02_data_validation import DataValidationPipeline
+from src.ElectricityBill.pipelines.pip_03_data_transformation import DataTransformationPipeline
+from src.ElectricityBill.pipelines.pip_04_model_trainer import ModelTrainerPipeline
+from src.ElectricityBill.pipelines.pip_05_model_evaluation import ModelEvaluationPipelin
 
-class PipelineOrchestrator:
-    """Orchestrates the execution of multiple pipelines."""
+COMPONENT_01_NAME = "DATA INGESTION COMPONENT"
+try: 
+    logger.info(f"# ====================== {COMPONENT_01_NAME} Started! ============================== #")
+    data_ingestion_pipeline = DataIngestionPipeline()
+    data_ingestion_pipeline.run()
+    logger.info(f"# ====================== {COMPONENT_01_NAME} Terminated Successfully! ===============##\n\nx******************x")
+except Exception as e:
+    logger.exception(e)
+    raise e
 
-    def __init__(self):
-        self.pipelines: List[Callable] = []
-    
-    def add_pipeline(self, pipeline: Callable):
-        """Adds a pipeline to the list of pipelines to be executed."""
-        self.pipelines.append(pipeline)
+COMPONENT_02_NAME = "DATA VALIDATION COMPONENT"
+try:
+    logger.info(f"# ====================== {COMPONENT_02_NAME} Started! ================================= #")
+    data_validation_pipeline = DataValidationPipeline()
+    data_validation_pipeline.run()
+    logger.info(f"## ======================== {COMPONENT_02_NAME} Terminated Successfully!=============== ##\n\nx************************x")
 
-    def run_all(self):
-        """Executes all pipelines in sequence."""
-        try:
-            for pipeline in self.pipelines:
-                logger.info(f"Starting {pipeline.__name__} pipeline")
-                pipeline_result = pipeline()  # Execute the pipeline with no input
-                logger.info(f"Completed {pipeline.__name__} pipeline")
-        except Exception as e:
-            logger.error(f"Error in orchestrator: {e}")
-            raise CustomException(e, sys)
-        
-        
-    def create_data_ingestion_pipeline():
-        """Creates a data ingestion pipeline."""
-        ingestion_pipeline = DataIngestionPipeline()
-        ingestion_pipeline.run()
-        return {}
+except Exception as e:
+    logger.exception(e)
+    raise e
 
-    def create_data_validation_pipeline():
-        """Creates a data validation pipeline."""
-        validation_pipeline = DataValidationPipeline()
-        validation_pipeline.run()
-        return {}
+COMPONENT_03_NAME = "DATA TRANSFORMATION COMPONENT"
+try:
+    logger.info(f"# ====================== {COMPONENT_03_NAME} Started! ================================= #")
+    data_transformation_pipeline = DataTransformationPipeline()
+    data_transformation_pipeline.run()
+    logger.info(f"## ======================== {COMPONENT_03_NAME} Terminated Successfully!=================== ##\n\nx*********************x")
 
-    def create_data_transformation_pipeline():
-        """Creates a data transformation pipeline."""
-        transformation_pipeline = DataTransformationPipeline()
-        transformation_pipeline.run()
-        return {}
+except Exception as e:
+    logger.exception(e)
+    raise e
 
-    def create_model_trainer_pipeline():
-        """Creates a model trainer pipeline."""
-        trainer_pipeline = ModelTrainerPipeline()
-        trainer_pipeline.run()
-        return {}
+COMPONENT_04_NAME = "MODEL TRAINER COMPONENT"
+try:
+    logger.info(f"# ====================== {COMPONENT_04_NAME} Started! ================================= #")
+    model_trainer_pipeline = ModelTrainerPipeline()
+    model_trainer_pipeline.run()
+    logger.info(f"## ========================  {COMPONENT_04_NAME} Terminated Successfully!===================== ##\n\nx******************x")
 
-    def create_model_evaluation_pipeline():
-        """Creates a model evaluation pipeline."""
-        evaluation_pipeline = ModelEvaluationPipeline()
-        evaluation_pipeline.run()
-        return {}
-
-    def create_model_validation_pipeline():
-        """Creates a model validation pipeline."""
-        validation_pipeline = ModelValidationPipeline()
-        validation_pipeline.run()
-        return {}
+except Exception as e:
+    logger.exception(e)
+    raise e
 
 
-if __name__ == "__main__":
-    try:
-        logger.info("## ================ Starting Entire Model Pipeline =======================")
-        orchestrator = PipelineOrchestrator()
-        orchestrator.add_pipeline(create_data_ingestion_pipeline)
-        orchestrator.add_pipeline(create_data_validation_pipeline)
-        orchestrator.add_pipeline(create_data_transformation_pipeline)
-        orchestrator.add_pipeline(create_model_trainer_pipeline)
-        orchestrator.add_pipeline(create_model_evaluation_pipeline)
-        orchestrator.add_pipeline(create_model_validation_pipeline)
-        orchestrator.run_all()
-        logger.info("## ================ Entire Model Pipeline completed successfully =======================")
-    except Exception as e:
-        logger.error(f"Error during entire pipeline execution: {e}")
-        raise CustomException(e, sys)        
+COMPONENT_05_NAME = "MODEL EVALUATION COMPONENT"
+try:
+    logger.info(f"# ====================== {COMPONENT_05_NAME} Started! ================================= #")
+    model_evaluation_pipeline = ModelEvaluationPipeline()
+    model_evaluation_pipeline.run()
+    logger.info(f"## ======================== {COMPONENT_05_NAME} Terminated Successfully!======================= ##\n\nx******************x")
+except Exception as e:
+    logger.exception(e)
+    raise e
