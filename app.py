@@ -92,7 +92,7 @@ class CustomData:
 # Route to homepage
 @app.route('/')  # Added the route decorator to the homepage function
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 # Route to prediction
 @app.route('/predict', methods=['GET', 'POST'])

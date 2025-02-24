@@ -18,7 +18,7 @@ from src.ElectricityBill.logger import logger
 from src.ElectricityBill.constants import DATA_TRANSFORMATION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
 from src.ElectricityBill.config_manager.config_settings import *
-
+from src.ElectricityBill.components.c_03_data_transformation import *
 
 PIPELINE_NAME = "DATA TRANSFORMATION PIPELINE"
 

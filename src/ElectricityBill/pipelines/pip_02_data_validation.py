@@ -19,6 +19,7 @@ from src.ElectricityBill.constants import DATA_VALIDATION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
 from src.ElectricityBill.config_manager.config_settings import *
 from src.ElectricityBill.pipelines.pip_02_data_validation import DataValidationPipeline
+from src.ElectricityBill.components.c_02_data_validation import *
 
 PIPELINE_NAME = "DATA VALIDATION PIPELINE"
 class DataValidationPipeline:
@@ -28,25 +29,18 @@ class DataValidationPipeline:
     def run(self):
         try:
             config_manager = ConfigurationManager()
-            config = config_manager.get_data_validation_config()
-            data_validation = DataValidation(config=config)
-        
-            print(f"Data Directory: {config.get_config().data_dir}") #Check that the data directory is correct
-            data = pd.read_parquet(config.get_config().data_dir)
-            print("Loaded DataFrame Shape:", data.shape)
-        
-            logger.info("Starting data validation process") 
-            validation_status = data_validation.validate_data(data)
+            data_validation_config = config_manager.get_data_validation_config()
+            data_validation = DataValidation(config=data_validation_config)
+            validation_status = data_validation.validate_all_columns()
 
             if validation_status:
-                logger.info("Data Validation Completed Successfully!")
+                print("Data validation successful!")
             else:
-                logger.warning("Data Validation Failed. Check the status file for more details.")
+                print("Data validation failed.")
 
         except Exception as e:
-            logger.error(f"Data validation process failed: {e}")
-            raise CustomException(e, sys)
-    
+            print(f"Error: {e}")
+         
     
 if __name__ == "__main__":
     try:

@@ -17,7 +17,9 @@ from src.ElectricityBill.exception import CustomException
 from src.ElectricityBill.logger import logger
 from src.ElectricityBill.constants import DATA_INGESTION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
-
+from src.ElectricityBill.components.c_05_model_validation import *
+from src.ElectricityBill.config_manager.config_settings import *
+import wandb
 PIPELINE_NAME = "MODEL VALIDATION PIPELINE"
 
 class DataModelValidationPipeline:
@@ -40,12 +42,12 @@ class DataModelValidationPipeline:
             # Write the updated run number back to the file
             write_run_count_to_file(root_dir, run_number)
 
-        logger.info("Model Validation Completed Successfully")
+            logger.info("Model Validation Completed Successfully")
 
         except Exception as e:
-        logger.error(f"Error in model validation: {str(e)}")
-        wandb.finish()
-        sys.exit(1)
+            logger.error(f"Error in model validation: {str(e)}")
+            wandb.finish()
+            sys.exit(1)
         
         
 if __name__ == "__main__":

@@ -18,7 +18,9 @@ from src.ElectricityBill.logger import logger
 from src.ElectricityBill.constants import DATA_INGESTION_CONFIG_FILEPATH
 from src.ElectricityBill.utils.commons import read_yaml, create_directories
 from src.ElectricityBill.config_manager.config_settings import ConfigurationManager
-from src.ElectricityBill.components.c_05_model_evaluation import ModelEvaluation 
+from src.ElectricityBill.components.c_05_model_evaluation import * 
+import wandb
+
 
 
 PIPELINE_NAME = "MODEL EVALUATION PIPELINE"
@@ -45,12 +47,12 @@ class DataModelEvaluationPipeline:
         # Write the updated run number back to the file
             write_run_count(root_dir, run_number)
 
-        logger.info("Model Evaluation Completed Successfully")
+            logger.info("Model Evaluation Completed Successfully")
 
         except CustomException as ce:
-        logger.error(f"Error in model evaluation")
-        wandb.finish()
-        sys.exit(1)
+            logger.error(f"Error in model evaluation")
+            wandb.finish()
+            sys.exit(1)
         
         
 if __name__ == "__main__":
