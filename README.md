@@ -79,3 +79,7 @@ Electricity Consumption: Different households or businesses in the same city mig
 It advisable for companies that have high power consumption to consider the ratnagiri, shimla, dahej and vadodara as their manufacturing site due to the lower tariff rate.
 It also recommended for with low wages to consider those cities.
 3. For cities like Navi Mumbai, Mumbai and Pune should consider other sources of electricity like solar, geothermal and wind turbines inorder to substitute so as to lower their electricity bills despite the higher tariff rates.
+
+## For more information
+- See the full analysis in the Jupyter Notebook or review this presentation. Contact me at :linkedin.com/in/western-onzere-ml17/  and linkedin.com/in/amase-oyakapeli-7848a8343
+![alt text](<Screenshot 2025-02-24 173302.png>)
